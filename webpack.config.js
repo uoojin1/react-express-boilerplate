@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin")
 const path = require('path')
 
 const htmlPlugin = new HtmlWebPackPlugin({
+  favicon: "./src/favicon.png",
   template: "./src/index.html", 
   filename: "./index.html"
 })
@@ -29,7 +30,7 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         loader: "file-loader",
-        options: { name: '/static/[name].[ext]' }
+        options: { name: '/assets/[name].[ext]' }
       }
     ]
   }
