@@ -1,5 +1,7 @@
-const express = require('express')
-const path = require('path')
+import express from 'express'
+import path from 'path'
+import cookieParser from 'cookie-parser'
+import logger from 'morgan'
 
 // create express app
 const app = express()
@@ -16,6 +18,17 @@ const mockResponse = {
 };
 
 app.use(express.static(DIST_DIR))
+
+// use standard Apache common log output.
+app.use(logger('common'))
+
+app.use(express.json())
+
+app.use(express.urlencoded({
+  extended: false
+}))
+
+app.use(cookieParser());
 
 app.get('/api', (req, res) => {
   res.send(mockResponse);
